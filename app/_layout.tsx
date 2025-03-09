@@ -1,13 +1,16 @@
 import { View, Text } from 'react-native';
 import '../global.css';
-import { nowPlayingAction } from '@/core/actions/movies/now-playing.actions';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Stack } from 'expo-router';
 
 const RootLayout = () => {
-  nowPlayingAction();
+  const queryClient = new QueryClient();
+
   return (
-    <View>
-      <Text className='bg-slate-950 text-2xl text-white'>RootLayout</Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <Stack screenOptions={{ headerShown: false }} />
+    </QueryClientProvider>
   );
 };
 export default RootLayout;
